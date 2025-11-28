@@ -1,4 +1,3 @@
-
 pub mod arg_util;
 pub mod function;
 
@@ -7,6 +6,5 @@ mod tests {
     use super::*;
 
     #[test]
-    fn it_works() {
-    }
+    fn it_works() {}
 }

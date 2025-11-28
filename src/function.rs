@@ -1,5 +1,3 @@
-
-
 pub type Supplier<T> = fn() -> T;
 
 pub type Consumer<T> = fn(T);

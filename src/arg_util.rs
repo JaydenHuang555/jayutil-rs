@@ -1,6 +1,4 @@
-use std::{
-    env::{args, Args}
-};
+use std::env::{Args, args};
 
 pub fn get_args() -> Args {
     args()
@@ -15,6 +13,4 @@ pub fn get_args_str_buffer() -> Vec<String> {
     buffer
 }
 
-pub struct ArgToken {
-
-}
+pub struct ArgToken {}
