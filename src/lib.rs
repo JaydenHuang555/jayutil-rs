@@ -1,5 +1,6 @@
 
 pub mod arg_util;
+pub mod function;
 
 #[cfg(test)]
 mod tests {
