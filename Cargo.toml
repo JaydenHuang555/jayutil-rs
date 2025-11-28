@@ -10,4 +10,8 @@ repository = "https://github.com/JaydenHuang555/jayutil-rs"
 # documentation = "N/A"
 keywords = ["jayutil"]
 
+[features]
+default = []
+unstable = []
+
 [dependencies]
