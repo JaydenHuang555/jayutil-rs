@@ -2,5 +2,12 @@
 name = "jayutil-rs"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "a set of useful elements for rust"
+authors = ["Jayden Huang"]
+homepage = "N/A"
+repository = "N/A"
+documentation = "N/A"
+keywords = ["jayutil"]
 
 [dependencies]
