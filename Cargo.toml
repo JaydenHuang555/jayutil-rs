@@ -5,9 +5,9 @@ edition = "2024"
 license = "MIT"
 description = "a set of useful elements for rust"
 authors = ["Jayden Huang"]
-homepage = "N/A"
-repository = "N/A"
-documentation = "N/A"
+homepage = "https://github.com/JaydenHuang555/jayutil-rs"
+repository = "https://github.com/JaydenHuang555/jayutil-rs"
+# documentation = "N/A"
 keywords = ["jayutil"]
 
 [dependencies]
