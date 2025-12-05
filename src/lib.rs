@@ -1,24 +1,25 @@
 pub mod arg_util;
+pub mod file_path;
 pub mod function;
 
 #[cfg(test)]
 mod tests {
     use std::iter::Inspect;
 
-    use crate::function::UnaryOperator;
+    use crate::{file_path::file_path::FilePath, function::UnaryOperator};
 
     use super::*;
 
     #[test]
     fn supplier() {
-        let supplier: function::Supplier<String> = | | return "input".to_string();
+        let supplier: function::Supplier<String> = || return "input".to_string();
         assert!(supplier().eq("input"));
     }
 
     #[test]
     fn consumer() {
-        let consumer: function::Consumer<&mut Option<String>> = |x: &mut Option<String> | {
-           x.take(); 
+        let consumer: function::Consumer<&mut Option<String>> = |x: &mut Option<String>| {
+            x.take();
         };
         let input = &mut Option::Some("input".to_string());
         consumer(input);
@@ -34,4 +35,19 @@ mod tests {
         assert!(output == (input * 2));
     }
 
+    #[test]
+    fn file_extension() {
+        let input = "test.jpg";
+        let output = file_path::file_extension::FileExtension::get(String::from(input));
+        assert!(output.is_valid());
+    }
+
+    #[test]
+    fn file_path() {
+        let mut path = FilePath::new();
+        path.append_entry("test");
+        path.append_entry("light");
+        path.set_extension("jpg");
+        assert!(path.raw() == "test/light.jpg")
+    }
 }
