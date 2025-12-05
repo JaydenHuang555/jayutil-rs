@@ -35,4 +35,12 @@ mod tests {
         assert!(output == (input * 2));
     }
 
+    #[test]
+    fn file_extension() {
+        let input = "test.jpg";
+        let output = file_path::file_extension::FileExtension::get(String::from(input));
+        assert!(output.is_valid());
+        eprintln!("{}", output.unwrap());
+    }
+
 }
