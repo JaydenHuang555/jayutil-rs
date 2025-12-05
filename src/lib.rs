@@ -1,5 +1,6 @@
 pub mod arg_util;
 pub mod function;
+pub mod file_path;
 
 #[cfg(test)]
 mod tests {
