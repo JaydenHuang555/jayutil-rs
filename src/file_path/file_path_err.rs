@@ -2,12 +2,10 @@ use std::fmt::Display;
 
 use crate::file_path::file_extension::FileExtension;
 
-
-
 #[derive(PartialEq, Eq, Debug, Clone, Copy)]
 pub enum FilePathError {
     ExtensionEmpty,
-    ExtensionMultipleFlagsFound
+    ExtensionMultipleFlagsFound,
 }
 
 impl Display for FilePathError {
@@ -15,7 +13,7 @@ impl Display for FilePathError {
         match self {
             FilePathError::ExtensionEmpty => {
                 write!(f, "File extension was empty")
-            },
+            }
             FilePathError::ExtensionMultipleFlagsFound => {
                 write!(f, "Multiple file extensions flags were found")
             }

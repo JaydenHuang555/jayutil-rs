@@ -1,16 +1,13 @@
 use std::{fmt::Display, fs::File};
 
-
-
 pub struct FilePath {
-    raw_path: String
+    raw_path: String,
 }
 
 impl FilePath {
-
     pub fn new() -> FilePath {
         Self {
-            raw_path: String::new()
+            raw_path: String::new(),
         }
     }
 
@@ -37,7 +34,6 @@ impl FilePath {
     pub fn raw(&self) -> &String {
         return &self.raw_path;
     }
-
 }
 
 impl PartialEq for FilePath {
