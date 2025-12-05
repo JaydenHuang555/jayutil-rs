@@ -28,6 +28,10 @@ impl<'a> FileExtension {
         FileExtension::Valid(builder)
     }
 
+    pub fn contains_extension(contents: String) -> bool {
+        return contents.contains(FLAG_CHAR);
+    }
+
     pub fn is_valid(&self) -> bool {
         match self {
             FileExtension::Valid(_) => true,

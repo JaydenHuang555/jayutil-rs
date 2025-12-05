@@ -6,7 +6,7 @@ pub mod file_path;
 mod tests {
     use std::iter::Inspect;
 
-    use crate::function::UnaryOperator;
+    use crate::{file_path::file_path::FilePath, function::UnaryOperator};
 
     use super::*;
 
@@ -40,7 +40,15 @@ mod tests {
         let input = "test.jpg";
         let output = file_path::file_extension::FileExtension::get(String::from(input));
         assert!(output.is_valid());
-        eprintln!("{}", output.unwrap());
+    }
+
+    #[test]
+    fn file_path() {
+        let mut path = FilePath::new();
+        path.append_entry("test");
+        path.append_entry("light");
+        path.set_extension("jpg");
+        assert!(path.raw() == "test/light.jpg")
     }
 
 }
