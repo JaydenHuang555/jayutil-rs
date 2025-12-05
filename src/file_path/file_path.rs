@@ -20,10 +20,6 @@ impl FilePath {
         self.raw_path.push_str(buffer);
     }
 
-    pub fn get_extension(&self) -> String {
-
-    }
-
     pub fn set_extension(&mut self, extension: String) {
         
     }
