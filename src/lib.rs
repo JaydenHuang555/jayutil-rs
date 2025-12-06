@@ -5,9 +5,9 @@ pub mod time;
 
 #[cfg(test)]
 mod tests {
-    use std::iter::Inspect;
+    use std::{iter::Inspect, thread::sleep, time::Duration};
 
-    use crate::{file_path::file_path::FilePath, function::UnaryOperator};
+    use crate::{file_path::file_path::FilePath, function::UnaryOperator, time::{stopwatch::{self, stopwatch::Stopwatch}, time}};
 
     use super::*;
 
@@ -51,4 +51,37 @@ mod tests {
         path.set_extension("jpg");
         assert!(path.raw() == "test/light.jpg")
     }
+
+    #[test]
+    fn stopwatch() {
+        let mut stopwatch = Stopwatch::new();
+        let start_result = stopwatch.start();
+
+        match start_result {
+            Ok(_) => {},
+            Err(error) => {
+                panic!("Unable to start stopwatch due to error {}", error);
+            },
+        }
+
+        let iterations = 3;
+        let epsilon = 0.5;
+        let sleep_delay = Duration::from_secs(1);
+
+        for i in 0 .. iterations {
+            let expected_time = ((i + 1) as f64) * sleep_delay.as_secs_f64();
+            sleep(sleep_delay);
+            match stopwatch.get_sec() {
+                Ok(secs) => {
+                    assert!(((secs - epsilon) <= expected_time) && ((secs + epsilon) >= expected_time));
+                },
+                Err(error) => {
+                    panic!("Failed when fetching stopwatch value due to {}", error);
+                },
+            }
+        }
+
+    }
+
+
 }
