@@ -14,5 +14,3 @@ keywords = ["jayutil"]
 default = []
 unstable = []
 
-[dependencies]
-num = "0.4.0"
