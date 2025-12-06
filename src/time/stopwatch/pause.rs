@@ -4,7 +4,7 @@ use crate::time::time;
 #[derive(Debug)]
 pub enum PauseError {
     InvalidEpoch,
-    EnabledWithoutTracking
+    EnabledWithoutTracking,
 }
 
 impl Error for PauseError {}
@@ -14,7 +14,7 @@ impl Display for PauseError {
         match self {
             Self::InvalidEpoch => {
                 writeln!(f, "Epoch time was invalid!!!")
-            },
+            }
             Self::EnabledWithoutTracking => {
                 writeln!(f, "Enabled without tracking duration!!!")
             }
@@ -26,17 +26,16 @@ pub struct PauseHandler {
     enabled: bool,
     start_time: Option<f64>,
     end_time: Option<f64>,
-    duration: f64, 
+    duration: f64,
 }
 
 impl PauseHandler {
-
     pub fn new() -> Self {
         Self {
             enabled: false,
             start_time: Option::None,
             end_time: Option::None,
-            duration: 0.0
+            duration: 0.0,
         }
     }
 
@@ -54,21 +53,20 @@ impl PauseHandler {
                 self.enabled = true;
                 self.start_time = Option::Some(time);
                 return Result::Ok(());
-            },
+            }
             Err(_) => {
                 return Result::Err(PauseError::InvalidEpoch);
-            },
+            }
         }
     }
 
     pub fn disable(&mut self) -> Result<(), PauseError> {
-        
         if !self.enabled {
-            return Result::Ok(())
+            return Result::Ok(());
         }
 
         if self.end_time.is_none() || self.start_time.is_none() {
-            return Result::Err(PauseError::EnabledWithoutTracking)
+            return Result::Err(PauseError::EnabledWithoutTracking);
         }
 
         let attempt = time::get_epoch();
@@ -83,10 +81,10 @@ impl PauseHandler {
                 self.duration = self.duration + total_duration;
 
                 return Result::Ok(());
-            },
+            }
             Err(_) => {
                 return Result::Err(PauseError::InvalidEpoch);
-            },
+            }
         }
     }
 
@@ -97,5 +95,4 @@ impl PauseHandler {
     pub fn get_duration(&self) -> f64 {
         return self.duration;
     }
-
 }

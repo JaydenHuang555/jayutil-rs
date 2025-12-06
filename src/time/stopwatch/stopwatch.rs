@@ -1,17 +1,18 @@
-
-use crate::time::{stopwatch::pause::{self, PauseError, PauseHandler}, time::{self, TimeError}};
+use crate::time::{
+    stopwatch::pause::{self, PauseError, PauseHandler},
+    time::{self, TimeError},
+};
 
 pub struct Stopwatch {
     start_time: Option<f64>,
-    pause_handler: PauseHandler
+    pause_handler: PauseHandler,
 }
 
 impl Stopwatch {
-
     pub fn new() -> Self {
         Self {
             start_time: Option::None,
-            pause_handler: PauseHandler::new()
+            pause_handler: PauseHandler::new(),
         }
     }
 
@@ -26,10 +27,10 @@ impl Stopwatch {
                 let start_time = attempt.unwrap();
                 self.start_time = Option::Some(start_time);
                 return Result::Ok(start_time);
-            },
+            }
             Err(_) => {
                 return attempt;
-            },
+            }
         }
     }
 
@@ -51,10 +52,10 @@ impl Stopwatch {
                 let total_duration = time - start_time;
                 let duration_without_pause = total_duration - self.pause_handler.get_duration();
                 return Result::Ok(duration_without_pause);
-            },
+            }
             Err(_) => {
                 return attempt;
-            },
+            }
         }
     }
 
@@ -76,7 +77,7 @@ impl Stopwatch {
             match self.pause() {
                 Result::Ok(_) => {
                     return Result::Ok(want_pause);
-                },
+                }
                 Result::Err(error) => {
                     return Result::Err(error);
                 }
@@ -84,5 +85,4 @@ impl Stopwatch {
         }
         return Result::Ok(want_pause);
     }
-
 }
