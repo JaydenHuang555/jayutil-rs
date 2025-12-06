@@ -1,15 +1,23 @@
-use std::{fmt::Debug, ops::{Add, Div, Mul, Neg, Sub}, process::Command};
+use std::{
+    fmt::Debug,
+    ops::{Add, Div, Mul, Neg, Sub},
+    process::Command,
+};
 
-pub fn epsilon_equals<Comparable>(input: Comparable, expected: Comparable, epsilon: Comparable) -> bool 
-where 
-    Comparable: PartialOrd + Add<Output  = Comparable> + Sub<Output = Comparable> + Copy + Debug 
+pub fn epsilon_equals<Comparable>(
+    input: Comparable,
+    expected: Comparable,
+    epsilon: Comparable,
+) -> bool
+where
+    Comparable: PartialOrd + Add<Output = Comparable> + Sub<Output = Comparable> + Copy + Debug,
 {
     (input - epsilon <= expected) && (input + epsilon >= expected)
 }
 
-pub fn hypot<Num>(x_input: Num, y_input: Num) -> Num 
-where 
-    Num: Into<f64> + From<f64>
+pub fn hypot<Num>(x_input: Num, y_input: Num) -> Num
+where
+    Num: Into<f64> + From<f64>,
 {
     let x = x_input.into();
     let y = y_input.into();
@@ -17,8 +25,8 @@ where
 }
 
 pub fn max<Comparable>(input1: Comparable, input2: Comparable) -> Comparable
-where 
-    Comparable: PartialOrd
+where
+    Comparable: PartialOrd,
 {
     if input2 > input1 {
         return input2;
@@ -27,8 +35,8 @@ where
 }
 
 pub fn min<Comparable>(input1: Comparable, input2: Comparable) -> Comparable
-where 
-    Comparable: PartialOrd
+where
+    Comparable: PartialOrd,
 {
     if input2 < input1 {
         return input2;
@@ -36,16 +44,20 @@ where
     return input1;
 }
 
-pub fn limit<Comparable>(input: Comparable, min_input: Comparable, max_input: Comparable) -> Comparable
-where 
-    Comparable: PartialOrd
+pub fn limit<Comparable>(
+    input: Comparable,
+    min_input: Comparable,
+    max_input: Comparable,
+) -> Comparable
+where
+    Comparable: PartialOrd,
 {
     min(max_input, max(input, min_input))
 }
 
 pub fn limit_abs<Comparable>(input: Comparable, abs_range: Comparable) -> Comparable
-where 
-    Comparable: PartialOrd + Neg<Output = Comparable> + Clone
+where
+    Comparable: PartialOrd + Neg<Output = Comparable> + Clone,
 {
     let low = -abs_range.clone();
     let high = abs_range;
