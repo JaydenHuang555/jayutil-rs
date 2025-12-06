@@ -1,6 +1,5 @@
-use std::time::SystemTime;
 
-use crate::time::{stopwatch::pause::{self, PauseError, PauseHandler}, time};
+use crate::time::{stopwatch::pause::{self, PauseError, PauseHandler}, time::{self, TimeError}};
 
 pub struct Stopwatch {
     start_time: Option<f64>,
@@ -20,12 +19,13 @@ impl Stopwatch {
         self.start_time.is_some()
     }
 
-    pub fn start(&mut self) -> Result<f64, ()> {
+    pub fn start(&mut self) -> Result<f64, TimeError> {
         let attempt = time::get_epoch();
         match attempt {
             Ok(_) => {
-                self.start_time = Option::Some(attempt.unwrap());
-                return attempt;
+                let start_time = attempt.unwrap();
+                self.start_time = Option::Some(start_time);
+                return Result::Ok(start_time);
             },
             Err(_) => {
                 return attempt;
@@ -33,16 +33,16 @@ impl Stopwatch {
         }
     }
 
-    pub fn start_if_not_started(&mut self) -> Result<f64, ()> {
+    pub fn start_if_not_started(&mut self) -> Result<f64, TimeError> {
         if self.start_time.is_none() {
             return self.start();
         }
         Result::Ok(0.0)
     }
 
-    pub fn get_sec(&self) -> Result<f64, ()> {
+    pub fn get_sec(&self) -> Result<f64, TimeError> {
         if self.start_time.is_none() {
-            return Result::Err(());
+            return Result::Err(TimeError::Empty);
         }
         let start_time = self.start_time.unwrap();
         let attempt = time::get_epoch();

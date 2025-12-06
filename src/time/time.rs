@@ -2,7 +2,8 @@ use std::{alloc::System, error::Error, fmt::Display, time::{Instant, SystemTime,
 
 #[derive(Debug)]
 pub enum TimeError {
-    InvalidEpoch
+    InvalidEpoch,
+    Empty
 }
 
 impl Error for TimeError {}
@@ -10,8 +11,8 @@ impl Error for TimeError {}
 impl Display for TimeError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::InvalidEpoch => writeln!(f, "fetched epoch value is invalid")
-            
+            Self::InvalidEpoch => writeln!(f, "fetched epoch value is invalid"),
+            Self::Empty => writeln!(f, "fetched value was empty")
         }
     }
 }
