@@ -71,6 +71,15 @@ where
     radians: Num,
 }
 
+impl<Num> Default for Angle<Num>
+where
+    Num: NumLike,
+ {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl<Num> Angle<Num>
 where
     Num: NumLike,

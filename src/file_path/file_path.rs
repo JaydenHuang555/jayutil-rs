@@ -1,7 +1,13 @@
-use std::{fmt::Display, fs::File};
+use std::fmt::Display;
 
 pub struct FilePath {
     raw_path: String,
+}
+
+impl Default for FilePath {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl FilePath {
@@ -32,7 +38,7 @@ impl FilePath {
     }
 
     pub fn raw(&self) -> &String {
-        return &self.raw_path;
+        &self.raw_path
     }
 }
 

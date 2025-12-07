@@ -1,6 +1,5 @@
 use std::fmt::Display;
 
-use crate::file_path::file_extension::FileExtension;
 
 #[derive(PartialEq, Eq, Debug, Clone, Copy)]
 pub enum FilePathError {

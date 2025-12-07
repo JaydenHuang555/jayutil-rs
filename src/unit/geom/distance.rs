@@ -1,4 +1,3 @@
-use std::fmt::Formatter;
 
 use crate::{
     math::unit::NumLike,
@@ -83,6 +82,15 @@ impl Unit for DistanceUnit {
 
 pub struct Distance<Num> {
     meters: Num,
+}
+
+impl<Num> Default for Distance<Num>
+where
+    Num: NumLike,
+ {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl<Num> Distance<Num>

@@ -1,11 +1,17 @@
 use crate::time::{
-    stopwatch::pause::{self, PauseError, PauseHandler},
+    stopwatch::pause::{PauseError, PauseHandler},
     time::{self, TimeError},
 };
 
 pub struct Stopwatch {
     start_time: Option<f64>,
     pause_handler: PauseHandler,
+}
+
+impl Default for Stopwatch {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Stopwatch {
@@ -26,10 +32,10 @@ impl Stopwatch {
             Ok(_) => {
                 let start_time = attempt.unwrap();
                 self.start_time = Option::Some(start_time);
-                return Result::Ok(start_time);
+                Result::Ok(start_time)
             }
             Err(_) => {
-                return attempt;
+                attempt
             }
         }
     }
@@ -51,10 +57,10 @@ impl Stopwatch {
             Ok(time) => {
                 let total_duration = time - start_time;
                 let duration_without_pause = total_duration - self.pause_handler.get_duration();
-                return Result::Ok(duration_without_pause);
+                Result::Ok(duration_without_pause)
             }
             Err(_) => {
-                return attempt;
+                attempt
             }
         }
     }
@@ -68,7 +74,7 @@ impl Stopwatch {
     }
 
     pub fn is_paused(&self) -> bool {
-        return self.pause_handler.is_enabled();
+        self.pause_handler.is_enabled()
     }
 
     pub fn pause_if_not_paused(&mut self) -> Result<bool, PauseError> {
@@ -83,6 +89,6 @@ impl Stopwatch {
                 }
             }
         }
-        return Result::Ok(want_pause);
+        Result::Ok(want_pause)
     }
 }

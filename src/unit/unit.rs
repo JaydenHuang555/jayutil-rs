@@ -1,4 +1,4 @@
-use std::fmt::{Display, Formatter};
+use std::fmt::Formatter;
 
 use crate::math::unit::NumLike;
 

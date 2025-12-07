@@ -1,8 +1,4 @@
-use std::{
-    fmt::Debug,
-    ops::{Add, Div, Mul, Neg, Sub},
-    process::Command,
-};
+use std::ops::Neg;
 
 use crate::math::unit::NumLike;
 
@@ -34,7 +30,7 @@ where
     if input2 > input1 {
         return input2;
     }
-    return input1;
+    input1
 }
 
 pub fn min<Comparable>(input1: Comparable, input2: Comparable) -> Comparable
@@ -44,7 +40,7 @@ where
     if input2 < input1 {
         return input2;
     }
-    return input1;
+    input1
 }
 
 pub fn limit<Comparable>(

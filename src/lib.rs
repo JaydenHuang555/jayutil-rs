@@ -6,16 +6,12 @@ pub mod unit;
 
 #[cfg(test)]
 mod tests {
-    use std::{iter::Inspect, thread::sleep, time::Duration};
+    use std::{thread::sleep, time::Duration};
 
     use crate::{
         file_path::file_path::FilePath,
-        function::UnaryOperator,
         math::math,
-        time::{
-            stopwatch::{self, stopwatch::Stopwatch},
-            time,
-        }, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
+        time::stopwatch::stopwatch::Stopwatch, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
     };
 
     use super::*;
