@@ -89,19 +89,17 @@ impl<Num> Distance<Num>
 where
     Num: NumLike,
 {
-
     pub fn from(value: Num, unit: DistanceUnit) -> Self {
         Self {
-            meters: unit.to_base(value)
+            meters: unit.to_base(value),
         }
     }
 
     pub fn new() -> Self {
         Self {
-            meters: Num::from_f64(0.0)
+            meters: Num::from_f64(0.0),
         }
     }
-
 }
 
 impl<Num> Measure<Num, DistanceUnit> for Distance<Num>
