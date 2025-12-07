@@ -4,13 +4,16 @@ use std::{
     process::Command,
 };
 
+use crate::math::unit::NumLike;
+
 pub fn epsilon_equals<Comparable>(
     input: Comparable,
     expected: Comparable,
     epsilon: Comparable,
 ) -> bool
 where
-    Comparable: PartialOrd + Add<Output = Comparable> + Sub<Output = Comparable> + Copy + Debug,
+    // Comparable: PartialOrd + Add<Output = Comparable> + Sub<Output = Comparable> + Copy + Debug,
+    Comparable: NumLike + Copy,
 {
     (input - epsilon <= expected) && (input + epsilon >= expected)
 }
