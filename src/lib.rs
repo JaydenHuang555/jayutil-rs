@@ -17,7 +17,7 @@ mod tests {
                 angle::{Angle, AngleUnit},
                 distance::{Distance, DistanceUnit},
             },
-            measure::Measure,
+            measure::Measure, time::time::{Time, TimeUnit},
         },
     };
 
@@ -96,4 +96,17 @@ mod tests {
             0.3
         ))
     }
+
+    #[test]
+    pub fn time_test() {
+        let time = Time::from(1.0, TimeUnit::Weeks);
+        assert!(
+            math::epsilon_equals(
+                time.to(TimeUnit::Days),
+                7.0,
+                0.5
+            )
+        )
+    }
+
 }
