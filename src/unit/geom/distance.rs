@@ -1,7 +1,6 @@
 
 use crate::{
-    math::unit::NumLike,
-    unit::{measure::Measure, unit::Unit},
+    jayutil_unit_generate_measure_traits, math::unit::NumLike, unit::{measure::Measure, unit::Unit}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -84,15 +83,6 @@ pub struct Distance<Num> {
     meters: Num,
 }
 
-impl<Num> Default for Distance<Num>
-where
-    Num: NumLike,
- {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
 impl<Num> Distance<Num>
 where
     Num: NumLike,
@@ -122,3 +112,7 @@ where
         self.meters = base;
     }
 }
+
+jayutil_unit_generate_measure_traits!(
+    Distance
+);
