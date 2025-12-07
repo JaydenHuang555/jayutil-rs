@@ -82,6 +82,13 @@ pub struct Time<Num> where Num: NumLike {
 }
 
 impl<Num> Time<Num> where Num: NumLike {
+
+    pub fn from(time: Num, unit: TimeUnit) -> Self {
+        Self {
+            seconds: unit.to_base(time)
+        }
+    }
+
     pub fn new() -> Self {
         Self {
             seconds: Num::from_f64(0.0)
