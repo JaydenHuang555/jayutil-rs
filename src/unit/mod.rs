@@ -1,4 +1,3 @@
-pub mod angle;
-pub mod distance;
+pub mod geom;
 pub mod measure;
 pub mod unit;

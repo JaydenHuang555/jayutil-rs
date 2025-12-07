@@ -16,10 +16,7 @@ mod tests {
         time::{
             stopwatch::{self, stopwatch::Stopwatch},
             time,
-        },
-        unit::{
-            angle::Angle, distance::{Distance, DistanceUnit}, measure::Measure
-        },
+        }, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
     };
 
     use super::*;
@@ -109,10 +106,10 @@ mod tests {
 
     #[test]
     pub fn angle_test() {
-        let angle = Angle::from(1.0, unit::angle::AngleUnit::Rotations);
+        let angle = Angle::from(1.0, AngleUnit::Rotations);
         assert!(
             math::epsilon_equals(
-                angle.to(unit::angle::AngleUnit::Degrees),
+                angle.to(AngleUnit::Degrees),
                 360.0,
                 0.3
             )
