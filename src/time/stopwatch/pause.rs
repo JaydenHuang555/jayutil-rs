@@ -60,9 +60,7 @@ impl PauseHandler {
                 self.start_time = Option::Some(time);
                 Result::Ok(())
             }
-            Err(_) => {
-                Result::Err(PauseError::InvalidEpoch)
-            }
+            Err(_) => Result::Err(PauseError::InvalidEpoch),
         }
     }
 
@@ -88,9 +86,7 @@ impl PauseHandler {
 
                 Result::Ok(())
             }
-            Err(_) => {
-                Result::Err(PauseError::InvalidEpoch)
-            }
+            Err(_) => Result::Err(PauseError::InvalidEpoch),
         }
     }
 

@@ -11,7 +11,14 @@ mod tests {
     use crate::{
         file_path::file_path::FilePath,
         math::math,
-        time::stopwatch::stopwatch::Stopwatch, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
+        time::stopwatch::stopwatch::Stopwatch,
+        unit::{
+            geom::{
+                angle::{Angle, AngleUnit},
+                distance::{Distance, DistanceUnit},
+            },
+            measure::Measure,
+        },
     };
 
     use super::*;
@@ -77,19 +84,16 @@ mod tests {
             half.to(DistanceUnit::Meters),
             0.5,
             0.05
-        )) 
+        ))
     }
 
     #[test]
     pub fn angle_test() {
         let angle = Angle::from(1.0, AngleUnit::Rotations);
-        assert!(
-            math::epsilon_equals(
-                angle.to(AngleUnit::Degrees),
-                360.0,
-                0.3
-            )
-        )
+        assert!(math::epsilon_equals(
+            angle.to(AngleUnit::Degrees),
+            360.0,
+            0.3
+        ))
     }
-
 }

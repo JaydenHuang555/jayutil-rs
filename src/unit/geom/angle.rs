@@ -1,5 +1,7 @@
 use crate::{
-    jayutil_unit_generate_measure_traits, math::unit::NumLike, unit::{measure::Measure, unit::Unit}
+    jayutil_unit_generate_measure_traits,
+    math::unit::NumLike,
+    unit::{measure::Measure, unit::Unit},
 };
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -70,7 +72,6 @@ where
     radians: Num,
 }
 
-
 impl<Num> Angle<Num>
 where
     Num: NumLike,
@@ -101,6 +102,4 @@ where
     }
 }
 
-jayutil_unit_generate_measure_traits!(
-    Angle
-);
+jayutil_unit_generate_measure_traits!(Angle);

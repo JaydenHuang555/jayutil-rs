@@ -34,9 +34,7 @@ impl Stopwatch {
                 self.start_time = Option::Some(start_time);
                 Result::Ok(start_time)
             }
-            Err(_) => {
-                attempt
-            }
+            Err(_) => attempt,
         }
     }
 
@@ -59,9 +57,7 @@ impl Stopwatch {
                 let duration_without_pause = total_duration - self.pause_handler.get_duration();
                 Result::Ok(duration_without_pause)
             }
-            Err(_) => {
-                attempt
-            }
+            Err(_) => attempt,
         }
     }
 

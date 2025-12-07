@@ -63,7 +63,7 @@ macro_rules! jayutil_unit_generate_measure_traits {
 
             impl<Num> std::ops::Div for $t<Num> where Num: NumLike, {
                 type Output = Self;
-                
+
                 fn div(self, other: Self) -> Self {
                     let base_param = self.get_base() / other.get_base();
                     let mut ret = Self::default();
