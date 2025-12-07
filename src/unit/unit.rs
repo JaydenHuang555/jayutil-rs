@@ -1,7 +1,18 @@
+use std::fmt::{Display, Formatter};
 
-pub trait Unit {
+use crate::math::unit::NumLike;
 
-    fn from_base(base: f64);
-    fn to_base(norm: f64);
+
+pub trait Unit: /*  Display */ {
+
+    fn from_base<Num>(&self, base: Num) -> Num where Num: NumLike;
+    fn to_base<Num>(&self, value: Num) -> Num where Num: NumLike;
+
+    fn name(&self) -> &'static str;
+    fn symbol(&self) -> &'static str;
+
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        writeln!(f, "{}", self.symbol())
+    }
 
 }
