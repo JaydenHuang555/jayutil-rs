@@ -2,7 +2,6 @@ pub mod arg_util;
 pub mod file_path;
 pub mod function;
 pub mod time;
-pub mod math;
 pub mod unit;
 
 #[cfg(test)]
