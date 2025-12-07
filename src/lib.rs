@@ -17,7 +17,9 @@ mod tests {
             stopwatch::{self, stopwatch::Stopwatch},
             time,
         },
-        unit::{distance::{Distance, DistanceUnit}, measure::Measure},
+        unit::{
+            angle::Angle, distance::{Distance, DistanceUnit}, measure::Measure
+        },
     };
 
     use super::*;
@@ -98,11 +100,17 @@ mod tests {
     #[test]
     pub fn distance_test() {
         let distance = Distance::from(1.0, DistanceUnit::Meters);
-        Distance::from(1.0, DistanceUnit::Meters);
         assert!(math::epsilon_equals(
             distance.to(DistanceUnit::Feet),
             3.2808,
             0.2
         ))
     }
+
+    #[test]
+    pub fn angle_test() {
+        let angle = Angle::from(1.0, unit::angle::AngleUnit::Rotations);
+
+    }
+
 }
