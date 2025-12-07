@@ -32,7 +32,7 @@ macro_rules! jayutil_unit_generate_measure_traits {
                 type Output = Self;
 
                 fn add(self, other: Self) -> Self {
-                    let base_param  = self.get_base() * other.get_base();
+                    let base_param  = self.get_base() + other.get_base();
                     let mut ret = Self::default();
                     ret.set_base(base_param);
                     ret
