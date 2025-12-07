@@ -14,8 +14,7 @@ mod tests {
         time::stopwatch::stopwatch::Stopwatch,
         unit::{
             geom::{
-                angle::{Angle, AngleUnit},
-                distance::{Distance, DistanceUnit},
+                angle::{Angle, AngleUnit}, distance::{distance_measure::Distance, distance_unit::{self, DistanceUnit}},
             },
             measure::Measure, time::time::{Time, TimeUnit},
         },
@@ -73,15 +72,16 @@ mod tests {
 
     #[test]
     pub fn distance_test() {
-        let distance = Distance::from(1.0, DistanceUnit::Meters);
+        let distance = Distance::from(1.0, distance_unit::METERS);
+        println!("Distance in feet is {}", distance.to(distance_unit::FEET));
         assert!(math::epsilon_equals(
-            distance.to(DistanceUnit::Feet),
+            distance.to(distance_unit::FEET),
             3.2808,
             0.2
         ));
-        let half = distance - Distance::from(0.5, DistanceUnit::Meters);
+        let half = distance - Distance::from(0.5, distance_unit::METERS);
         assert!(math::epsilon_equals(
-            half.to(DistanceUnit::Meters),
+            half.to(distance_unit::METERS),
             0.5,
             0.05
         ))
