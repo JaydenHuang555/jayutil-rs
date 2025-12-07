@@ -1,6 +1,6 @@
 use std::fmt::Formatter;
 
-use crate::{math::unit::NumLike, unit::unit::Unit};
+use crate::{math::unit::NumLike, unit::{measure::Measure, unit::Unit}};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum DistanceUnit {
@@ -106,4 +106,21 @@ impl<Num> Distance<Num> where Num: NumLike {
         unit.from_base(self.meters.clone())
     }
 
+}
+
+impl<Num> Measure<Num, DistanceUnit> for Distance<Num> where Num: NumLike {
+
+    fn get_base(&self) -> Num {
+        self.meters.clone()
+    }
+
+    fn set_base(&mut self, base: Num) {
+        self.meters = base;
+    }
+
+    fn from(value: Num, unit: DistanceUnit) -> Self {
+        Self {
+            meters: unit.to_base(value)
+        }
+    }
 }
