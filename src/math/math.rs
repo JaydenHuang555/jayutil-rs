@@ -13,7 +13,7 @@ pub fn epsilon_equals<Comparable>(
 ) -> bool
 where
     // Comparable: PartialOrd + Add<Output = Comparable> + Sub<Output = Comparable> + Copy + Debug,
-    Comparable: NumLike + Copy
+    Comparable: NumLike + Copy,
 {
     (input - epsilon <= expected) && (input + epsilon >= expected)
 }
