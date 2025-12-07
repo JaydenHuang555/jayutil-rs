@@ -89,24 +89,19 @@ impl<Num> Distance<Num>
 where
     Num: NumLike,
 {
+
     pub fn from(value: Num, unit: DistanceUnit) -> Self {
         Self {
-            meters: unit.to_base(value),
+            meters: unit.to_base(value)
         }
     }
 
     pub fn new() -> Self {
-        Self::from(Num::from_f64(0.0), DistanceUnit::Meters)
+        Self {
+            meters: Num::from_f64(0.0)
+        }
     }
 
-    pub fn set(&mut self, value: Num, unit: DistanceUnit) -> &Self {
-        self.meters = unit.to_base(value);
-        self
-    }
-
-    pub fn to(&self, unit: DistanceUnit) -> Num {
-        unit.from_base(self.meters.clone())
-    }
 }
 
 impl<Num> Measure<Num, DistanceUnit> for Distance<Num>
@@ -119,11 +114,5 @@ where
 
     fn set_base(&mut self, base: Num) {
         self.meters = base;
-    }
-
-    fn from(value: Num, unit: DistanceUnit) -> Self {
-        Self {
-            meters: unit.to_base(value),
-        }
     }
 }

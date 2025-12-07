@@ -4,8 +4,6 @@ pub trait Measure<Num: NumLike, U: Unit> {
     fn set_base(&mut self, base: Num);
     fn get_base(&self) -> Num;
 
-    fn from(value: Num, unit: U) -> Self;
-
     fn set(&mut self, value: Num, unit: U) -> &Self {
         self.set_base(unit.to_base(value));
         self
