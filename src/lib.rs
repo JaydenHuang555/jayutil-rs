@@ -10,10 +10,14 @@ mod tests {
     use std::{iter::Inspect, thread::sleep, time::Duration};
 
     use crate::{
-        file_path::file_path::FilePath, function::UnaryOperator, math::math, time::{
+        file_path::file_path::FilePath,
+        function::UnaryOperator,
+        math::math,
+        time::{
             stopwatch::{self, stopwatch::Stopwatch},
             time,
-        }, unit::distance::{Distance, DistanceUnit}
+        },
+        unit::distance::{Distance, DistanceUnit},
     };
 
     use super::*;
@@ -94,6 +98,10 @@ mod tests {
     #[test]
     pub fn distance_test() {
         let distance = Distance::from(1.0, DistanceUnit::Meters);
-        assert!(math::epsilon_equals(distance.to(DistanceUnit::Feet), 3.2808, 0.2))
+        assert!(math::epsilon_equals(
+            distance.to(DistanceUnit::Feet),
+            3.2808,
+            0.2
+        ))
     }
 }
