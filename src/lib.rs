@@ -15,7 +15,8 @@ mod tests {
         time::{
             stopwatch::{self, stopwatch::Stopwatch},
             time,
-        }, unit::distance::{Distance, DistanceUnit},
+        },
+        unit::distance::{Distance, DistanceUnit},
     };
 
     use super::*;
@@ -99,5 +100,4 @@ mod tests {
         println!("{}", distance.to(DistanceUnit::Feet));
         assert!(1 != 1)
     }
-
 }

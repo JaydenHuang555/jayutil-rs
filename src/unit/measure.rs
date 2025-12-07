@@ -1,8 +1,6 @@
 use crate::{math::unit::NumLike, unit::unit::Unit};
 
-
 pub trait Measure<Num: NumLike, U: Unit> {
-
     fn set_base(&mut self, base: Num);
     fn get_base(&self) -> Num;
 
@@ -16,6 +14,4 @@ pub trait Measure<Num: NumLike, U: Unit> {
     fn to(&self, unit: U) -> Num {
         unit.from_base(self.get_base())
     }
-
-
 }

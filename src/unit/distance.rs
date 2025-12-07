@@ -1,6 +1,9 @@
 use std::fmt::Formatter;
 
-use crate::{math::unit::NumLike, unit::{measure::Measure, unit::Unit}};
+use crate::{
+    math::unit::NumLike,
+    unit::{measure::Measure, unit::Unit},
+};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum DistanceUnit {
@@ -15,7 +18,6 @@ pub enum DistanceUnit {
 }
 
 impl Unit for DistanceUnit {
-
     fn from_base<Num>(&self, base: Num) -> Num
     where
         Num: NumLike,
@@ -51,7 +53,7 @@ impl Unit for DistanceUnit {
             DistanceUnit::Inches => value * Num::from_f64(0.0254),
         }
     }
-    
+
     fn name(&self) -> &'static str {
         match self {
             DistanceUnit::Meters => "meters",
@@ -77,19 +79,19 @@ impl Unit for DistanceUnit {
             DistanceUnit::Inches => "in",
         }
     }
-
 }
-
 
 pub struct Distance<Num> {
-    meters: Num
+    meters: Num,
 }
 
-impl<Num> Distance<Num> where Num: NumLike {
-
+impl<Num> Distance<Num>
+where
+    Num: NumLike,
+{
     pub fn from(value: Num, unit: DistanceUnit) -> Self {
         Self {
-            meters: unit.to_base(value)
+            meters: unit.to_base(value),
         }
     }
 
@@ -105,11 +107,12 @@ impl<Num> Distance<Num> where Num: NumLike {
     pub fn to(&self, unit: DistanceUnit) -> Num {
         unit.from_base(self.meters.clone())
     }
-
 }
 
-impl<Num> Measure<Num, DistanceUnit> for Distance<Num> where Num: NumLike {
-
+impl<Num> Measure<Num, DistanceUnit> for Distance<Num>
+where
+    Num: NumLike,
+{
     fn get_base(&self) -> Num {
         self.meters.clone()
     }
@@ -120,7 +123,7 @@ impl<Num> Measure<Num, DistanceUnit> for Distance<Num> where Num: NumLike {
 
     fn from(value: Num, unit: DistanceUnit) -> Self {
         Self {
-            meters: unit.to_base(value)
+            meters: unit.to_base(value),
         }
     }
 }
