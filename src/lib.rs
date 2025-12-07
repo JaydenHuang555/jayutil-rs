@@ -3,6 +3,7 @@ pub mod file_path;
 pub mod function;
 pub mod math;
 pub mod time;
+pub mod unit;
 
 #[cfg(test)]
 mod tests {
@@ -11,10 +12,11 @@ mod tests {
     use crate::{
         file_path::file_path::FilePath,
         function::UnaryOperator,
+        math::math,
         time::{
             stopwatch::{self, stopwatch::Stopwatch},
             time,
-        },
+        }, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
     };
 
     use super::*;
@@ -91,4 +93,27 @@ mod tests {
             }
         }
     }
+
+    #[test]
+    pub fn distance_test() {
+        let distance = Distance::from(1.0, DistanceUnit::Meters);
+        assert!(math::epsilon_equals(
+            distance.to(DistanceUnit::Feet),
+            3.2808,
+            0.2
+        ))
+    }
+
+    #[test]
+    pub fn angle_test() {
+        let angle = Angle::from(1.0, AngleUnit::Rotations);
+        assert!(
+            math::epsilon_equals(
+                angle.to(AngleUnit::Degrees),
+                360.0,
+                0.3
+            )
+        )
+    }
+
 }
