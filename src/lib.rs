@@ -71,7 +71,13 @@ mod tests {
             distance.to(DistanceUnit::Feet),
             3.2808,
             0.2
-        ))
+        ));
+        let half = distance - Distance::from(0.5, DistanceUnit::Meters);
+        assert!(math::epsilon_equals(
+            half.to(DistanceUnit::Meters),
+            0.5,
+            0.05
+        )) 
     }
 
     #[test]
