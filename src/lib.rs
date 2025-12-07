@@ -1,6 +1,7 @@
 pub mod arg_util;
 pub mod file_path;
 pub mod function;
+pub mod math;
 pub mod time;
 pub mod unit;
 
@@ -14,7 +15,7 @@ mod tests {
         time::{
             stopwatch::{self, stopwatch::Stopwatch},
             time,
-        },
+        }, unit::distance::{Distance, DistanceUnit},
     };
 
     use super::*;
@@ -91,4 +92,12 @@ mod tests {
             }
         }
     }
+
+    #[test]
+    pub fn distance_test() {
+        let distance = Distance::from(1.0, DistanceUnit::Meters);
+        println!("{}", distance.to(DistanceUnit::Feet));
+        assert!(1 != 1)
+    }
+
 }
