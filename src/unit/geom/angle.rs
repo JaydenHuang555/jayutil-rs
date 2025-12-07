@@ -1,7 +1,5 @@
 use crate::{
-    jayutil_unit_generate_measure_traits,
-    math::unit::NumLike,
-    unit::{measure::Measure, unit::Unit},
+    jayutil_unit_generate_measure_traits, jayutil_unit_generate_unit_traits, math::unit::NumLike, unit::{measure::Measure, unit::Unit}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -59,10 +57,6 @@ impl Unit for AngleUnit {
             AngleUnit::Rotations => "rot",
         }
     }
-
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        std::writeln!(f, "{}", self.symbol())
-    }
 }
 
 pub struct Angle<Num>
@@ -103,3 +97,4 @@ where
 }
 
 jayutil_unit_generate_measure_traits!(Angle);
+jayutil_unit_generate_unit_traits!(AngleUnit);

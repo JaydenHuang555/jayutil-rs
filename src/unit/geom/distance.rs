@@ -1,7 +1,5 @@
 use crate::{
-    jayutil_unit_generate_measure_traits,
-    math::unit::NumLike,
-    unit::{measure::Measure, unit::Unit},
+    jayutil_unit_generate_measure_traits, jayutil_unit_generate_unit_traits, math::unit::NumLike, unit::{measure::Measure, unit::Unit}
 };
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -115,3 +113,4 @@ where
 }
 
 jayutil_unit_generate_measure_traits!(Distance);
+jayutil_unit_generate_unit_traits!(DistanceUnit);
