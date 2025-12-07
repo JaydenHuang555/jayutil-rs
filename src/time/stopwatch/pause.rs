@@ -29,6 +29,12 @@ pub struct PauseHandler {
     duration: f64,
 }
 
+impl Default for PauseHandler {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl PauseHandler {
     pub fn new() -> Self {
         Self {
@@ -52,11 +58,9 @@ impl PauseHandler {
             Ok(time) => {
                 self.enabled = true;
                 self.start_time = Option::Some(time);
-                return Result::Ok(());
+                Result::Ok(())
             }
-            Err(_) => {
-                return Result::Err(PauseError::InvalidEpoch);
-            }
+            Err(_) => Result::Err(PauseError::InvalidEpoch),
         }
     }
 
@@ -78,13 +82,11 @@ impl PauseHandler {
                 let end_time = self.end_time.unwrap();
                 let start_time = self.start_time.unwrap();
                 let total_duration = end_time - start_time;
-                self.duration = self.duration + total_duration;
+                self.duration += total_duration;
 
-                return Result::Ok(());
+                Result::Ok(())
             }
-            Err(_) => {
-                return Result::Err(PauseError::InvalidEpoch);
-            }
+            Err(_) => Result::Err(PauseError::InvalidEpoch),
         }
     }
 
@@ -93,6 +95,6 @@ impl PauseHandler {
     }
 
     pub fn get_duration(&self) -> f64 {
-        return self.duration;
+        self.duration
     }
 }

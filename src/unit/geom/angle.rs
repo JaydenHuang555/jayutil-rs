@@ -1,4 +1,5 @@
 use crate::{
+    jayutil_unit_generate_measure_traits,
     math::unit::NumLike,
     unit::{measure::Measure, unit::Unit},
 };
@@ -100,3 +101,5 @@ where
         self.radians.clone()
     }
 }
+
+jayutil_unit_generate_measure_traits!(Angle);

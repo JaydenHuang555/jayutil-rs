@@ -1,6 +1,5 @@
-use std::fmt::Formatter;
-
 use crate::{
+    jayutil_unit_generate_measure_traits,
     math::unit::NumLike,
     unit::{measure::Measure, unit::Unit},
 };
@@ -114,3 +113,5 @@ where
         self.meters = base;
     }
 }
+
+jayutil_unit_generate_measure_traits!(Distance);

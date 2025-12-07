@@ -1,4 +1,3 @@
-pub mod arg_util;
 pub mod file_path;
 pub mod function;
 pub mod math;
@@ -7,44 +6,22 @@ pub mod unit;
 
 #[cfg(test)]
 mod tests {
-    use std::{iter::Inspect, thread::sleep, time::Duration};
+    use std::{thread::sleep, time::Duration};
 
     use crate::{
         file_path::file_path::FilePath,
-        function::UnaryOperator,
         math::math,
-        time::{
-            stopwatch::{self, stopwatch::Stopwatch},
-            time,
-        }, unit::{geom::{angle::{Angle, AngleUnit}, distance::{Distance, DistanceUnit}}, measure::Measure},
+        time::stopwatch::stopwatch::Stopwatch,
+        unit::{
+            geom::{
+                angle::{Angle, AngleUnit},
+                distance::{Distance, DistanceUnit},
+            },
+            measure::Measure,
+        },
     };
 
     use super::*;
-
-    #[test]
-    fn supplier() {
-        let supplier: function::Supplier<String> = || return "input".to_string();
-        assert!(supplier().eq("input"));
-    }
-
-    #[test]
-    fn consumer() {
-        let consumer: function::Consumer<&mut Option<String>> = |x: &mut Option<String>| {
-            x.take();
-        };
-        let input = &mut Option::Some("input".to_string());
-        consumer(input);
-        assert!(input.is_none());
-    }
-
-    #[test]
-    fn unary_operator() {
-        let operation: UnaryOperator<u32> = |x| return x * 2;
-        let input = 3;
-        let output = operation(input);
-        println!("{}", output);
-        assert!(output == (input * 2));
-    }
 
     #[test]
     fn file_extension() {
@@ -101,19 +78,22 @@ mod tests {
             distance.to(DistanceUnit::Feet),
             3.2808,
             0.2
+        ));
+        let half = distance - Distance::from(0.5, DistanceUnit::Meters);
+        assert!(math::epsilon_equals(
+            half.to(DistanceUnit::Meters),
+            0.5,
+            0.05
         ))
     }
 
     #[test]
     pub fn angle_test() {
         let angle = Angle::from(1.0, AngleUnit::Rotations);
-        assert!(
-            math::epsilon_equals(
-                angle.to(AngleUnit::Degrees),
-                360.0,
-                0.3
-            )
-        )
+        assert!(math::epsilon_equals(
+            angle.to(AngleUnit::Degrees),
+            360.0,
+            0.3
+        ))
     }
-
 }

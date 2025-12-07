@@ -1,5 +1,4 @@
 use core::fmt::{Debug, Display};
-use std::ops::Neg;
 
 pub trait NumLike:
     core::ops::Add<Output = Self>
