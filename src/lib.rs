@@ -19,9 +19,7 @@ mod tests {
                     distance_measure::Distance,
                     distance_unit::{self, DistanceUnit},
                 },
-            },
-            measure::Measure,
-            time::{time_measure::Time, time_unit},
+            }, measure::Measure, motion::velocity::angular::angular_velocity_measure::AngularVelocity, time::{time_measure::Time, time_unit}
         },
     };
 
@@ -107,4 +105,9 @@ mod tests {
         let time = Time::from(1.0, time_unit::WEEKS);
         assert!(math::epsilon_equals(time.to(time_unit::DAYS), 7.0, 0.5))
     }
+
+    #[test]
+    pub fn linear_velocity_check() {
+    }
+
 }
