@@ -17,9 +17,9 @@ mod tests {
                 angle::{angle_measure::Angle, angle_unit},
                 distance::{
                     distance_measure::Distance,
-                    distance_unit::{self, DistanceUnit},
+                    distance_unit::{self, DistanceUnit, METERS},
                 },
-            }, measure::Measure, motion::velocity::angular::angular_velocity_measure::AngularVelocity, time::{time_measure::Time, time_unit}
+            }, measure::Measure, motion::{motion_unit::MotionUnit, velocity::{angular::angular_velocity_measure::AngularVelocity, linear::{linear_velocity_measure::LinearVelocity, linear_velocity_unit::{LinearVelocityUnit, METERS_PER_SECOND}}}}, time::{time_measure::Time, time_unit::{self, MINUTES}}
         },
     };
 
@@ -76,15 +76,15 @@ mod tests {
     #[test]
     pub fn distance_test() {
         let distance = Distance::from(1.0, distance_unit::METERS);
-        println!("Distance in feet is {}", distance.to(distance_unit::FEET));
+        println!("Distance in feet is {}", distance.to(&distance_unit::FEET));
         assert!(math::epsilon_equals(
-            distance.to(distance_unit::FEET),
+            distance.to(&distance_unit::FEET),
             3.2808,
             0.2
         ));
         let half = distance - Distance::from(0.5, distance_unit::METERS);
         assert!(math::epsilon_equals(
-            half.to(distance_unit::METERS),
+            half.to(&distance_unit::METERS),
             0.5,
             0.05
         ))
@@ -94,7 +94,7 @@ mod tests {
     pub fn angle_test() {
         let angle = Angle::from(1.0, angle_unit::ROTATIONS);
         assert!(math::epsilon_equals(
-            angle.to(angle_unit::DEGREES),
+            angle.to(&angle_unit::DEGREES),
             360.0,
             0.5
         ))
@@ -103,11 +103,21 @@ mod tests {
     #[test]
     pub fn time_test() {
         let time = Time::from(1.0, time_unit::WEEKS);
-        assert!(math::epsilon_equals(time.to(time_unit::DAYS), 7.0, 0.5))
+        assert!(math::epsilon_equals(time.to(&time_unit::DAYS), 7.0, 0.5))
     }
 
     #[test]
     pub fn linear_velocity_check() {
+        let velo = LinearVelocity::from(1.0, METERS_PER_SECOND);
+        let next_unit = &LinearVelocityUnit::derive_units(METERS, MINUTES); 
+        println!("{}", velo.to(next_unit));
+        assert!(
+            math::epsilon_equals(
+                velo.to(next_unit),
+                1.0 / next_unit.get_scale_to_base(),
+                0.5
+            )
+        )
     }
 
 }
