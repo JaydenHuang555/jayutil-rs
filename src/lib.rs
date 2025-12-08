@@ -14,12 +14,12 @@ mod tests {
         time::stopwatch::stopwatch::Stopwatch,
         unit::{
             geom::{
-                angle::{angle_measure::Angle, angle_unit},
+                angle::{angle_measure::Angle, angle_unit::{self, DEGREES}},
                 distance::{
                     distance_measure::Distance,
                     distance_unit::{self, DistanceUnit, METERS},
                 },
-            }, measure::Measure, motion::{motion_unit::MotionUnit, velocity::{angular::angular_velocity_measure::AngularVelocity, linear::{linear_velocity_measure::LinearVelocity, linear_velocity_unit::{LinearVelocityUnit, METERS_PER_SECOND}}}}, time::{time_measure::Time, time_unit::{self, MINUTES}}
+            }, measure::Measure, motion::{motion_unit::MotionUnit, velocity::{angular::{angular_velocity_measure::AngularVelocity, angular_velocity_unit::{AngularVelocityUnit, RADIANS_PER_SECOND}}, linear::{linear_velocity_measure::LinearVelocity, linear_velocity_unit::{LinearVelocityUnit, METERS_PER_SECOND}}}}, time::{time_measure::Time, time_unit::{self, MINUTES, SECONDS}}
         },
     };
 
@@ -111,6 +111,19 @@ mod tests {
         let velo = LinearVelocity::from(1.0, METERS_PER_SECOND);
         let next_unit = &LinearVelocityUnit::derive_units(METERS, MINUTES); 
         println!("{}", velo.to(next_unit));
+        assert!(
+            math::epsilon_equals(
+                velo.to(next_unit),
+                1.0 / next_unit.get_scale_to_base(),
+                0.5
+            )
+        )
+    }
+
+    #[test]
+    pub fn angular_velocity_check() {
+        let velo = AngularVelocity::from(1.0, RADIANS_PER_SECOND);
+        let next_unit = &AngularVelocityUnit::derive_units(DEGREES, SECONDS);
         assert!(
             math::epsilon_equals(
                 velo.to(next_unit),
