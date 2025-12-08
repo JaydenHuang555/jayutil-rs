@@ -11,7 +11,7 @@ pub struct LinearVelocityUnit {
 jayutil_unit_generate_unit_impl!(LinearVelocityUnit);
 jayutil_unit_generate_unit_traits!(LinearVelocityUnit);
 
-jayutil_unit_motion_generate_impl!(LinearVelocityUnit, DistanceUnit, TimeUnit, Distance, Time);
+jayutil_unit_motion_generate_impl!(LinearVelocityUnit, DistanceUnit, TimeUnit);
 
 pub const METERS_PER_SECOND: LinearVelocityUnit = LinearVelocityUnit::from(1.0, "Meters per Second", "m/s");
 pub const KILOMETERS_PER_HOUR: LinearVelocityUnit = LinearVelocityUnit::from(1000.0 / 3600.0, "Kilometers per Hour", "km/h");

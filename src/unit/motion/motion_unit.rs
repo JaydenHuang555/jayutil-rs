@@ -11,7 +11,7 @@ where
 
 #[macro_export]
 macro_rules! jayutil_unit_motion_generate_impl {
-    ($($t:ident, $tu:ident, $ru:ident, $tm:ident, $rm:ident)*) => {
+    ($($t:ident, $tu:ident, $ru:ident)*) => {
        $(
             impl crate::unit::motion::motion_unit::MotionUnit<$tu, $ru> for $t {
 
