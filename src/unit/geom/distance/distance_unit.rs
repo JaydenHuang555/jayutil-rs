@@ -1,6 +1,6 @@
 use crate::{
-    jayutil_unit_generate_impl, jayutil_unit_generate_unit_traits,
-    math::unit::NumLike, unit::unit::Unit,
+    jayutil_unit_generate_unit_impl, jayutil_unit_generate_unit_traits, math::unit::NumLike,
+    unit::unit::Unit,
 };
 
 pub struct DistanceUnit {
@@ -10,7 +10,7 @@ pub struct DistanceUnit {
 }
 
 jayutil_unit_generate_unit_traits!(DistanceUnit);
-jayutil_unit_generate_impl!(DistanceUnit);
+jayutil_unit_generate_unit_impl!(DistanceUnit);
 
 pub const METERS: DistanceUnit = DistanceUnit::from(1.0, "Meters", "m");
 pub const KILOMETERS: DistanceUnit = DistanceUnit::from(1000.0, "Kilometers", "km");

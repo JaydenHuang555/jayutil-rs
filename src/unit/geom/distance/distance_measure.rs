@@ -1,5 +1,8 @@
 use crate::{
-    jayutil_unit_generate_measure_impl, jayutil_unit_generate_measure_traits, jayutil_unit_generate_unit_traits, math::unit::NumLike, unit::{geom::distance::distance_unit::DistanceUnit, measure::Measure, unit::Unit}
+    jayutil_unit_generate_measure_impl, jayutil_unit_generate_measure_traits,
+    jayutil_unit_generate_unit_traits,
+    math::unit::NumLike,
+    unit::{geom::distance::distance_unit::DistanceUnit, measure::Measure, unit::Unit},
 };
 
 pub struct Distance<Num> {

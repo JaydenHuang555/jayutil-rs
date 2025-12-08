@@ -33,7 +33,7 @@ macro_rules! jayutil_unit_generate_unit_traits {
 }
 
 #[macro_export]
-macro_rules! jayutil_unit_generate_impl {
+macro_rules! jayutil_unit_generate_unit_impl {
     ($($t: ident), *) => {
        $(
             impl $t {

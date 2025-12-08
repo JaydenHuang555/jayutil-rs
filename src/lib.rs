@@ -14,13 +14,14 @@ mod tests {
         time::stopwatch::stopwatch::Stopwatch,
         unit::{
             geom::{
-                angle::{angle_measure::Angle, angle_unit}, distance::{
+                angle::{angle_measure::Angle, angle_unit},
+                distance::{
                     distance_measure::Distance,
                     distance_unit::{self, DistanceUnit},
-                }
+                },
             },
             measure::Measure,
-            time::time::{Time, TimeUnit},
+            time::{time_measure::Time, time_unit},
         },
     };
 
@@ -94,18 +95,16 @@ mod tests {
     #[test]
     pub fn angle_test() {
         let angle = Angle::from(1.0, angle_unit::ROTATIONS);
-        assert!(
-            math::epsilon_equals(
-                angle.to(angle_unit::DEGREES),
-                360.0,
-                0.5
-            )
-        )
+        assert!(math::epsilon_equals(
+            angle.to(angle_unit::DEGREES),
+            360.0,
+            0.5
+        ))
     }
 
     #[test]
     pub fn time_test() {
-        let time = Time::from(1.0, TimeUnit::Weeks);
-        assert!(math::epsilon_equals(time.to(TimeUnit::Days), 7.0, 0.5))
+        let time = Time::from(1.0, time_unit::WEEKS);
+        assert!(math::epsilon_equals(time.to(time_unit::DAYS), 7.0, 0.5))
     }
 }
