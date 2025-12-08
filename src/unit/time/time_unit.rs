@@ -1,4 +1,5 @@
-use crate::jayutil_unit_generate_unit_impl;
+use crate::{jayutil_unit_generate_unit_impl, jayutil_unit_generate_unit_traits};
+use crate::unit::unit::Unit;
 
 pub struct TimeUnit {
     scale_to_base: f64,
@@ -7,6 +8,7 @@ pub struct TimeUnit {
 }
 
 jayutil_unit_generate_unit_impl!(TimeUnit);
+jayutil_unit_generate_unit_traits!(TimeUnit);
 
 pub const SECONDS: TimeUnit = TimeUnit::from(1.0, "Seconds", "s");
 pub const MILLISECONDS: TimeUnit = TimeUnit::from(0.001, "Milliseconds", "ms");

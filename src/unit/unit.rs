@@ -44,7 +44,13 @@ macro_rules! jayutil_unit_generate_unit_impl {
                         symbol: symbol
                     }
                 }
+
+                pub fn get_scale_to_base(&self) -> f64 {
+                    self.scale_to_base.clone()
+                }
+
             }
+
             impl crate::unit::unit::Unit for $t {
 
                 fn from_base<Num>(&self, base: Num) -> Num
