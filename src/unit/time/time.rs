@@ -1,5 +1,8 @@
-use crate::{jayutil_unit_generate_measure_traits, math::unit::NumLike, unit::{measure::Measure, unit::Unit}};
-
+use crate::{
+    jayutil_unit_generate_measure_traits,
+    math::unit::NumLike,
+    unit::{measure::Measure, unit::Unit},
+};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum TimeUnit {
@@ -77,26 +80,34 @@ impl Unit for TimeUnit {
     }
 }
 
-pub struct Time<Num> where Num: NumLike {
-    seconds: Num
+pub struct Time<Num>
+where
+    Num: NumLike,
+{
+    seconds: Num,
 }
 
-impl<Num> Time<Num> where Num: NumLike {
-
+impl<Num> Time<Num>
+where
+    Num: NumLike,
+{
     pub fn from(time: Num, unit: TimeUnit) -> Self {
         Self {
-            seconds: unit.to_base(time)
+            seconds: unit.to_base(time),
         }
     }
 
     pub fn new() -> Self {
         Self {
-            seconds: Num::from_f64(0.0)
+            seconds: Num::from_f64(0.0),
         }
     }
 }
 
-impl<Num> Measure<Num, TimeUnit> for Time<Num> where Num: NumLike {
+impl<Num> Measure<Num, TimeUnit> for Time<Num>
+where
+    Num: NumLike,
+{
     fn set_base(&mut self, base: Num) {
         self.seconds = base;
     }
@@ -106,6 +117,4 @@ impl<Num> Measure<Num, TimeUnit> for Time<Num> where Num: NumLike {
     }
 }
 
-jayutil_unit_generate_measure_traits!(
-    Time
-);
+jayutil_unit_generate_measure_traits!(Time);

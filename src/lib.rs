@@ -14,9 +14,14 @@ mod tests {
         time::stopwatch::stopwatch::Stopwatch,
         unit::{
             geom::{
-                angle::{Angle, AngleUnit}, distance::{distance_measure::Distance, distance_unit::{self, DistanceUnit}},
+                angle::{Angle, AngleUnit},
+                distance::{
+                    distance_measure::Distance,
+                    distance_unit::{self, DistanceUnit},
+                },
             },
-            measure::Measure, time::time::{Time, TimeUnit},
+            measure::Measure,
+            time::time::{Time, TimeUnit},
         },
     };
 
@@ -100,13 +105,6 @@ mod tests {
     #[test]
     pub fn time_test() {
         let time = Time::from(1.0, TimeUnit::Weeks);
-        assert!(
-            math::epsilon_equals(
-                time.to(TimeUnit::Days),
-                7.0,
-                0.5
-            )
-        )
+        assert!(math::epsilon_equals(time.to(TimeUnit::Days), 7.0, 0.5))
     }
-
 }
