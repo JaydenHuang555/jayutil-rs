@@ -75,16 +75,3 @@ macro_rules! jayutil_unit_generate_measure_traits {
         )*
     };
 }
-
-#[macro_export]
-macro_rules! jayutil_unit_generate_unit_traits {
-    ($($t:ident), *) => {
-        $(
-        impl std::fmt::Display for $t {
-            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                std::writeln!(f, "{}", self.symbol())
-            }
-        }
-        )*
-    };
-}
