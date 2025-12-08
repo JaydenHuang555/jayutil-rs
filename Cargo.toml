@@ -10,6 +10,12 @@ repository = "https://github.com/JaydenHuang555/jayutil-rs"
 # documentation = "N/A"
 keywords = ["jayutil"]
 
+# [package.metadata.rust-analyzer]
+# rust-analyzer.cargo.buildScripts.enable = true
+[package.metadata]
+rust-analyzer.enable-enhanced-build-system = true
+
+
 [features]
 default = []
 unstable = []
