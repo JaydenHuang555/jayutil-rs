@@ -20,7 +20,7 @@ pub trait Measure<Num: NumLike, U: Unit> {
 macro_rules! jayutil_unit_generate_measure_impl {
     ($($t:ident, $u:ident),*) => {
         $(
-            impl<Num> $t<Num> where Num: NumLike {
+            impl<Num> $t<Num> where Num: crate::math::unit::NumLike {
 
                 pub fn from(value: Num, u: $u) -> Self {
                     Self {
