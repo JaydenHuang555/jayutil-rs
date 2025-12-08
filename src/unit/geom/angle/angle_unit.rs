@@ -21,4 +21,4 @@ pub const ARCSECONDS: AngleUnit =
     AngleUnit::from(std::f64::consts::PI / 648_000.0, "Arcseconds", "″");
 pub const REVOLUTIONS: AngleUnit =
     AngleUnit::from(2.0 * std::f64::consts::PI, "Revolutions", "rev");
-pub const ROTATIONS: AngleUnit = AngleUnit::from(2.0 * std::f64::consts::PI, "Revolutions", "rev");
+pub const ROTATIONS: AngleUnit = AngleUnit::from(2.0 * std::f64::consts::PI, "Rotations", "rot");
