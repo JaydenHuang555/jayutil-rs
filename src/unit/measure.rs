@@ -22,7 +22,7 @@ macro_rules! jayutil_unit_generate_measure_impl {
         $(
             impl<Num> $t<Num> where Num: crate::math::unit::NumLike {
 
-                pub fn from(value: Num, u: $u) -> Self {
+                pub fn from(value: Num, u: &$u) -> Self {
                     Self {
                         base: u.to_base(value)
                     }
