@@ -1,5 +1,5 @@
-use crate::{jayutil_unit_generate_unit_impl, jayutil_unit_generate_unit_traits};
 use crate::unit::unit::Unit;
+use crate::{jayutil_unit_generate_unit_impl, jayutil_unit_generate_unit_traits};
 
 pub struct TimeUnit {
     scale_to_base: f64,

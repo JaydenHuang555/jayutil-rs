@@ -1,8 +1,10 @@
-use crate::{math::unit::NumLike, unit::{measure::Measure, unit::Unit}};
+use crate::{
+    math::unit::NumLike,
+    unit::{measure::Measure, unit::Unit},
+};
 
-
-pub trait MotionUnit<TU, RU>: Unit 
-where 
+pub trait MotionUnit<TU, RU>: Unit
+where
     TU: Unit,
     RU: Unit,
 {
@@ -25,6 +27,6 @@ macro_rules! jayutil_unit_motion_generate_impl {
                     }
                 }
             }
-       )* 
+       )*
     };
 }

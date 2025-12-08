@@ -11,7 +11,7 @@ pub trait Measure<Num: NumLike, U: Unit> {
         self
     }
 
-    fn to(&self, unit:&U) -> Num {
+    fn to(&self, unit: &U) -> Num {
         unit.from_base(self.get_base())
     }
 }
