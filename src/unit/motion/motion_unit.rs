@@ -8,7 +8,7 @@ where
     TU: Unit,
     RU: Unit,
 {
-    fn derive_units(travel: TU, rate: RU) -> Self;
+    fn derive_units(travel: &TU, rate: &RU) -> Self;
 }
 
 #[macro_export]
@@ -17,7 +17,7 @@ macro_rules! jayutil_unit_motion_generate_impl {
        $(
             impl crate::unit::motion::motion_unit::MotionUnit<$tu, $ru> for $t {
 
-                fn derive_units(travel: $tu, rate: $ru) -> Self {
+                fn derive_units(travel: &$tu, rate: &$ru) -> Self {
                     let format_name = format!("{} per {}", travel.name(), rate.name());
                     let format_symbol = format!("{} / {}", travel.symbol(), rate.symbol());
                     Self {
