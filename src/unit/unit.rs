@@ -45,17 +45,17 @@ macro_rules! jayutil_unit_generate_impl {
                     }
                 }
             }
-            impl Unit for $t {
+            impl crate::unit::unit::Unit for $t {
 
                 fn from_base<Num>(&self, base: Num) -> Num
                     where
-                        Num: NumLike {
+                        Num: crate::math::unit::NumLike  {
                     base / Num::from_f64(self.scale_to_base)
                 }
 
                 fn to_base<Num>(&self, value: Num) -> Num
                 where
-                    Num: NumLike {
+                    Num: crate::math::unit::NumLike {
                         value * Num::from_f64(self.scale_to_base)
                 }
 
