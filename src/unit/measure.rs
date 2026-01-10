@@ -6,14 +6,51 @@ pub trait Measure<Num: NumLike, U: Unit> {
     fn set_base(&mut self, base: Num);
     fn get_base(&self) -> Num;
 
-    fn set(&mut self, value: Num, unit: U) -> &Self {
+    fn set(&mut self, value: Num, unit: &U) -> &Self {
         self.set_base(unit.to_base(value));
         self
     }
 
-    fn to(&self, unit: U) -> Num {
+    fn to(&self, unit: &U) -> Num {
         unit.from_base(self.get_base())
     }
+}
+
+#[macro_export]
+macro_rules! jayutil_unit_generate_measure_impl {
+    ($($t:ident, $u:ident),*) => {
+        $(
+            impl<Num> $t<Num> where Num: crate::math::unit::NumLike {
+
+                pub fn from(value: Num, u: &$u) -> Self {
+                    Self {
+                        base: u.to_base(value)
+                    }
+                }
+
+                pub fn new() -> Self {
+                    Self {
+                        base: Num::from_f64(0.0)
+                    }
+                }
+
+            }
+
+            impl<Num> crate::unit::measure::Measure<Num, $u> for $t<Num> where Num: crate::math::unit::NumLike {
+
+                fn get_base(&self) -> Num {
+                    self.base.clone()
+                }
+
+                fn set_base(&mut self, base: Num) {
+                    self.base = base;
+                }
+
+            }
+
+
+        )*
+    };
 }
 
 #[macro_export]
@@ -21,13 +58,13 @@ macro_rules! jayutil_unit_generate_measure_traits {
     ($($t:ident),*) => {
         $(
 
-            impl<Num> Default for $t<Num> where Num: NumLike {
+            impl<Num> Default for $t<Num> where Num: crate::math::unit::NumLike {
                 fn default() -> Self {
                     Self::new()
                 }
             }
 
-            impl<Num> std::ops::Add for $t<Num> where Num: NumLike,
+            impl<Num> std::ops::Add for $t<Num> where Num: crate::math::unit::NumLike,
             {
                 type Output = Self;
 
@@ -39,7 +76,7 @@ macro_rules! jayutil_unit_generate_measure_traits {
                 }
             }
 
-            impl<Num> std::ops::Sub for $t<Num> where Num: NumLike, {
+            impl<Num> std::ops::Sub for $t<Num> where Num: crate::math::unit::NumLike, {
                 type Output = Self;
 
                 fn sub(self, other: Self) -> Self {
@@ -50,7 +87,7 @@ macro_rules! jayutil_unit_generate_measure_traits {
                 }
             }
 
-            impl<Num> std::ops::Mul for $t<Num> where Num: NumLike, {
+            impl<Num> std::ops::Mul for $t<Num> where Num: crate::math::unit::NumLike, {
                 type Output = Self;
 
                 fn mul(self, other: Self) -> Self {
@@ -61,7 +98,7 @@ macro_rules! jayutil_unit_generate_measure_traits {
                 }
             }
 
-            impl<Num> std::ops::Div for $t<Num> where Num: NumLike, {
+            impl<Num> std::ops::Div for $t<Num> where Num: crate::math::unit::NumLike, {
                 type Output = Self;
 
                 fn div(self, other: Self) -> Self {
